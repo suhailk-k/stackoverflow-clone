@@ -2,6 +2,7 @@ import React from 'react';
 import './Auth.css';
 import icon from '../../assets/logo1.png';
 import { useState } from 'react';
+import AboutAuth from './AboutAuth';
 
 const Auth = () => {
   const [isSignUp, setIsSignUp] = useState(false);
@@ -11,7 +12,8 @@ const Auth = () => {
   };
   return (
     <section className='auth-section'>
-      <div className='Auth-container'>
+      {isSignUp && <AboutAuth />}
+      <div className='auth-container'>
         {!isSignUp && (
           <img src={icon} alt='stack overflow' className='login-logo' />
         )}
@@ -27,24 +29,30 @@ const Auth = () => {
             <input type='email' name='name' id='email' />
           </label>
           <label htmlFor='password'>
-            <div>
+            <div style={{ display: 'flex', justifyContent: 'space-between' }}>
               <h4>Password</h4>
-              {!isSignUp && <h4>forgot password?</h4>}
+              {!isSignUp && (
+                <p style={{ color: '#007ac6', fontSize: '13px' }}>
+                  forgot password?
+                </p>
+              )}
             </div>
             <input type='password' name='password' id='password' />
             {isSignUp && (
-               <p style={{color:"#666767", fontSize:"13px"}}>
-                Passwords must contain at least eight <br/>characters, including at
-                least 1 letter and 1 <br/>number.
+              <p style={{ color: '#666767', fontSize: '13px' }}>
+                Passwords must contain at least eight <br />
+                characters, including at least 1 letter and 1 <br />
+                number.
               </p>
             )}
           </label>
           {isSignUp && (
             <label htmlFor='check'>
               <input type='checkbox' id='check' />
-              <p style={{ fontSize:"13px"}}>
-                Opt-in to receive occasional,<br/> product updates, user research
-                invitations, <br/>company announcements, and digests.
+              <p style={{ fontSize: '13px' }}>
+                Opt-in to receive occasional,
+                <br /> product updates, user research invitations, <br />
+                company announcements, and digests.
               </p>
             </label>
           )}
@@ -52,26 +60,28 @@ const Auth = () => {
             {isSignUp ? 'Sign Up' : 'Log In'}
           </button>
           {isSignUp && (
-            <p style={{color:"#666767" ,fontSize:"13px"}}>
+            <p style={{ color: '#666767', fontSize: '13px' }}>
               By clicking “Sign up”, you agree to our
-              <span style={{color:"#007ac6"}}> terms of<br /> service</span>,
-              <span style={{color:"#007ac6"}}> privacy policy</span> and  
-              <span style={{color:"#007ac6"}}> cookie policy</span>  
-             
-                
+              <span style={{ color: '#007ac6' }}>
+                {' '}
+                terms of
+                <br /> service
+              </span>
+              ,<span style={{ color: '#007ac6' }}> privacy policy</span> and
+              <span style={{ color: '#007ac6' }}> cookie policy</span>
             </p>
           )}
         </form>
         <p>
           {isSignUp ? 'Already have an account?' : "Don't have an account?"}
-        </p>
         <button
           type='button'
           className='handle-switch-btn'
           onClick={handleSwitch}
-        >
+          >
           {isSignUp ? 'Log In' : 'Sign Up'}
         </button>
+          </p>
       </div>
     </section>
   );
