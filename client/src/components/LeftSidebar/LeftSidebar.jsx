@@ -16,10 +16,10 @@ const LeftSidebar = () => {
                 <img src={Globe} alt='Globe' width="10%"/>
                 <p style={{paddingLeft:"10px"}}>Questions</p>
             </NavLink>
-            <NavLink to="Tags"style={{paddingLeft:"40px"}} className="side-nav-links" activeClassName="active">
+            <NavLink to="/Tags"style={{paddingLeft:"40px"}} className="side-nav-links" activeClassName="active">
 <p>Tags</p>
             </NavLink>
-            <NavLink to="Tags"style={{paddingLeft:"40px"}} className="side-nav-links" activeClassName="active">
+            <NavLink to="/Users"style={{paddingLeft:"40px"}} className="side-nav-links" activeClassName="active">
 <p>Users</p>
             </NavLink>
         </div>

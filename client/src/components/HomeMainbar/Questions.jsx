@@ -1,18 +1,19 @@
+import moment from 'moment';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './HomeMainbar.css';
 
 const Questions = ({ question }) => {
-  console.log("111",question)
+  // console.log("111",question)
   return (
     <div className='display-question-container'>
       <div className='display-votes-ans'>
-        <p>{question.upVotes - question.downVotes}</p>
+        <p>{question.upVote.length - question.downVote.length}</p>
         <p>votes</p>
       </div>
       <div className='display-votes-ans'>
-        <p>{question.noOf}</p>
-        <p></p>
+        <p>{question.noOfAnswers}</p>
+        <p>Answers</p>
       </div>
       <div className='display-question-details'>
         <Link to={`/Questions/${question._id}`} className='question-title-link'>
@@ -25,7 +26,7 @@ const Questions = ({ question }) => {
             ))}
           </div>
           <p className='display-time'>
-            asked {question.askedOn} {question.userPosted}
+            asked {moment(question.askedOn).fromNow()} {question.userPosted}
            
           </p>
         </div>

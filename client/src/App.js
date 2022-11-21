@@ -8,6 +8,7 @@ import Navbar from './components/Navbar/Navbar';
 import './App.css';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { fetchAllUsers } from './actions/users';
 
 function App() {
 const dispatch=useDispatch()
@@ -15,7 +16,7 @@ const dispatch=useDispatch()
 
   useEffect(() => {
 dispatch(fetcAllQuestions())
-   
+   dispatch(fetchAllUsers())
   }, [dispatch])
   
   return (

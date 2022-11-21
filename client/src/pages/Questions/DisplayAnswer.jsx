@@ -1,14 +1,25 @@
 import React from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useParams } from 'react-router-dom';
 import Questions from '../../components/HomeMainbar/Questions';
 import Avatar from '../../components/Avatar/Avatar';
 import './Questions.css';
 import moment from 'moment';
 import copy from 'copy-to-clipboard';
+import { useDispatch, useSelector } from 'react-redux';
+import {deleteAnswer} from "../../actions/question"
+
 
 const DisplayAnswer = ({ question }) => {
+
+  const User = useSelector((state) => state.currentUserReducer);
+const {id}=useParams()
+const dispatch=useDispatch()
+const handleDelete=(answerId,noOfAnswers)=>{
+  dispatch(deleteAnswer(id,answerId,noOfAnswers-1))
+}
+
   const location = useLocation();
-  console.log(location);
+  // console.log(location);
   const Url = 'http://localhost:3000';
   const handleShare = () => {
     // alert('Copied url :' + Url + location.pathname);
@@ -26,12 +37,15 @@ const DisplayAnswer = ({ question }) => {
               <button type='button' onClick={handleShare}>
                 Share
               </button>
-              <button type='button'>Delete</button>
+              {User?.result?._id === ans?.userId &&(
+
+<button type='button' onClick={()=>{handleDelete(ans._id,question.noOfAnswers)}}>Delete</button>
+)}
             </div>
             <div>
               <p>answered {moment(ans.answeredOn).fromNow()}</p>
               <Link
-                to={`/User/${question.userId}`}
+                to={`/Users/${ans.userId}`}
                 className='user-link'
                 style={{ color: '#0086d8' }}
               >

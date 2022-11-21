@@ -6,7 +6,7 @@ import './Questions.css';
 import Avatar from '../../components/Avatar/Avatar';
 import DisplayAnswer from './DisplayAnswer';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteQuestion, postAnswer } from '../../actions/question';
+import { deleteQuestion, postAnswer, voteQuestion } from '../../actions/question';
 import moment from 'moment';
 
 import copy from 'copy-to-clipboard';
@@ -112,6 +112,13 @@ export default function QuestionDetails() {
     dispatch(deleteQuestion(id,navigate))
   }
 
+const handleUpVote=()=>{
+  dispatch(voteQuestion(id,"upVote",User.result._id))
+}
+
+const handleDownVote=()=>{
+  dispatch(voteQuestion(id,"downVote",User.result._id))
+}
 
 
   return (
@@ -128,9 +135,9 @@ export default function QuestionDetails() {
                   <h1>{question.questionTitle}</h1>
                   <div className='question-details-container-2'>
                     <div className='question-votes'>
-                      <img src={upVote} alt='' width='18' />
-                      <p>{question.upVotes - question.downVotes}</p>
-                      <img src={downVote} alt='' width='18' />
+                      <img src={upVote} alt='' width='18' onClick={handleUpVote}/>
+                      <p>{question.upVote.length - question.downVote.length}</p>
+                      <img src={downVote} alt='' width='18' onClick={handleDownVote}/>
                     </div>
                     <div style={{ width: '100%' }}>
                       <p className='question-body'>{question.questionBody}</p>
@@ -152,7 +159,7 @@ export default function QuestionDetails() {
                         <div>
                           <p>asked {moment(question.askedOn).fromNow()}</p>
                           <Link
-                            to={`/User/${question.userId}`}
+                            to={`/Users/${question.userId}`}
                             className='user-link'
                             style={{ color: '#0086d8' }}
                           >
