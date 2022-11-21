@@ -5,10 +5,19 @@ import search from '../../assets/search.svg';
 import './Navbar.css';
 import Avatar from '../Avatar/Avatar';
 import Button from "../Button/Button"
+import { useSelector,useDispatch } from 'react-redux';
+import { useEffect } from 'react';
+import { setCurrentUser } from '../../actions/currentUser';
+
 
 function Navbar() {
-  var User = null;
+  const dispatch = useDispatch()
+  var User = useSelector((state)=>( state.currentUserReducer))
+  useEffect(()=>{
+    dispatch(setCurrentUser(JSON.parse(localStorage.getItem("profile"))))
+  },[dispatch])
   return (
+
     <nav className='main-nav'>
       <div className='navbar '>
         <Link to='/' className='nav-item nav-logo'>
@@ -50,7 +59,7 @@ function Navbar() {
                 to='/User '
                 style={{ color: 'white', textDecoration: 'none' }}
               >
-                M
+                {User.result.name.charAt(0).toUpperCase()}
               </Link>
             </Avatar>
 
