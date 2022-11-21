@@ -77,7 +77,7 @@ export default function QuestionDetails() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const location = useLocation();
-  const url = 'http://localhost:3000';
+  const url = '';
 
   const User = useSelector((state) => state.currentUserReducer);
   const questionsList = useSelector((state) => state.questionsReducer);

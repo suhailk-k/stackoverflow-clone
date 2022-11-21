@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // const API = axios.create({ baseURL: 'http://localhost:5000' });
-const API = axios.create({ baseURL: '/api/v1' });
+const API = axios.create({ baseURL: '' });
 
 API.interceptors.request.use((req) => {
   // console.log('testing vsvdgsvg', localStorage.getItem('profile'));

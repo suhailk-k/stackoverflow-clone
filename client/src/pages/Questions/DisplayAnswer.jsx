@@ -20,7 +20,7 @@ const handleDelete=(answerId,noOfAnswers)=>{
 
   const location = useLocation();
   // console.log(location);
-  const Url = 'http://localhost:3000';
+  const Url = '';
   const handleShare = () => {
     // alert('Copied url :' + Url + location.pathname);
     alert('Copied url :' + Url + location.pathname);
