@@ -17,9 +17,9 @@ app.use(cors());
 //   res.send('This is a stack overflow clone api');
 // });
 
-app.use('/user', userRouters);
-app.use('/questions', questionRoutes);
-app.use('/answer', answerRoutes);
+app.use('/api/v1/user', userRouters);
+app.use('/api/v1/questions', questionRoutes);
+app.use('/api/v1/answer', answerRoutes);
 const PORT = process.env.PORT || 5000;
 
 const DATABASE_URL = process.env.CONNECTION_URL;
